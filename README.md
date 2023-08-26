@@ -83,7 +83,7 @@ A computer
 Clone this repository to your desired folder:
 
 cd my-folder
-git clone https://github.com/BiancaMe/bookstore.git
+git clone https://github.com/BiancaMe/bookstore-app.git
 
 ### Usage
 You can run follow the next steps: 

@@ -1,0 +1,18 @@
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 3%;
+}
+
+.nav-logo {
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+}
+
+.item-c {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}

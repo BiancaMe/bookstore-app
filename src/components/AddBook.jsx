@@ -5,7 +5,7 @@ import { addBook } from '../redux/books/bookSlice';
 const AddNewBook = () => {
   const dispatch = useDispatch();
   const [data, setData] = useState({
-    id: '-1', title: '', author: 'Susan Collins', category: 'None',
+    id: '-1', title: '', author: 'Susan Collins', category: 'Comedy',
   });
   const list = useSelector((state) => state.book.bookList);
   const setTitle = (e) => {
@@ -22,6 +22,13 @@ const AddNewBook = () => {
     }));
   };
 
+  const setCategory = (e) => {
+    setData((values) => ({
+      ...values,
+      category: e.target.value,
+    }));
+  };
+
   const submit = (e) => {
     e.preventDefault();
     dispatch(addBook(data));
@@ -32,15 +39,16 @@ const AddNewBook = () => {
       <h3>Add New Book</h3>
       <form onSubmit={submit}>
         <input type="text" className="title-form" placeholder="Book title" onChange={setTitle} />
+        <input type="text" className="author-form" placeholder="Book Author" onChange={setAuthor} />
         <select
           className="author-form"
           placeholder="Author"
-          onChange={setAuthor}
+          onChange={setCategory}
         >
-          <option value="Susan Collins">Susan Collins</option>
-          <option value="Franks">Franks</option>
-          <option value="Collins">Collins</option>
-          <option value="Frank Herbert">Frank Herbert</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Economy">Economy</option>
+          <option value="Fiction">Fiction</option>
+          <option value="Horror">Horror</option>
         </select>
         <button type="submit">ADD BOOK</button>
       </form>

@@ -1,54 +1,52 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { addBook } from '../redux/books/bookSlice';
+import { postBook } from '../redux/books/bookSlice';
 
 const AddNewBook = () => {
   const dispatch = useDispatch();
-  const [data, setData] = useState({
-    id: '-1', title: '', author: 'Susan Collins', category: 'Comedy',
-  });
-  const list = useSelector((state) => state.book.bookList);
-  const setTitle = (e) => {
-    setData((values) => ({
-      ...values,
-      title: e.target.value,
-      id: `${list.length + 1}`,
-    }));
-  };
-  const setAuthor = (e) => {
-    setData((values) => ({
-      ...values,
-      author: e.target.value,
-    }));
+
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [category, setCategory] = useState('Comedy');
+
+  const saveTitle = (e) => {
+    e.preventDefault();
+    setTitle(e.target.value);
   };
 
-  const setCategory = (e) => {
-    setData((values) => ({
-      ...values,
-      category: e.target.value,
-    }));
+  const saveAuthor = (e) => {
+    e.preventDefault();
+    setAuthor(e.target.value);
+  };
+
+  const saveCategory = (e) => {
+    e.preventDefault();
+    setCategory(e.target.value);
   };
 
   const submit = (e) => {
     e.preventDefault();
-    dispatch(addBook(data));
+    if (title && author && category) {
+      dispatch(postBook({ title, author, category }));
+      document.getElementById('form').reset();
+    }
   };
 
   return (
     <div>
       <h3>Add New Book</h3>
-      <form onSubmit={submit}>
-        <input type="text" className="title-form" placeholder="Book title" onChange={setTitle} />
-        <input type="text" className="author-form" placeholder="Book Author" onChange={setAuthor} />
+      <form id="form" onSubmit={submit}>
+        <input type="text" className="title-form" placeholder="Book title" onChange={saveTitle} />
+        <input type="text" className="author-form" placeholder="Book Author" onChange={saveAuthor} />
         <select
           className="author-form"
           placeholder="Author"
-          onChange={setCategory}
+          onChange={saveCategory}
         >
-          <option value="Comedy">Comedy</option>
-          <option value="Economy">Economy</option>
-          <option value="Fiction">Fiction</option>
-          <option value="Horror">Horror</option>
+          <option>Comedy</option>
+          <option>Economy</option>
+          <option>Fiction</option>
+          <option>Horror</option>
         </select>
         <button type="submit">ADD BOOK</button>
       </form>

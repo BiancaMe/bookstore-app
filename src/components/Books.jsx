@@ -1,14 +1,22 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import Book from './Book';
 import '../styles/books.css';
+import { getBooks } from '../redux/books/bookSlice';
 
 const Books = () => {
-  const { bookList } = useSelector((store) => store.book);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getBooks());
+  }, [dispatch]);
+
+  const { bookList } = useSelector((state) => state.book);
 
   return (
     <div className="books">
-      {bookList.map((book) => <Book key={book.id} {...book} />)}
+      {Object.entries(bookList).map(([key, book]) => (
+        <Book key={key} id={key} book={book[0]} />))}
     </div>
   );
 };

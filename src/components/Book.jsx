@@ -1,23 +1,20 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { removeBook } from '../redux/books/bookSlice';
+import { removeBookAPI } from '../redux/books/bookSlice';
 
-const Book = (props) => {
-  const {
-    id, title, author, category,
-  } = props;
+const Book = ({ id, book }) => {
   const dispatch = useDispatch();
 
   const remove = () => {
-    dispatch(removeBook(id));
+    dispatch(removeBookAPI(id));
   };
 
   return (
     <div className="book">
       <div className="details">
-        <p className="b-category">{category}</p>
-        <h3 className="b-title">{title}</h3>
-        <h4 className="b-author">{author}</h4>
+        <p className="b-category">{book.category}</p>
+        <h3 className="b-title">{book.title}</h3>
+        <h4 className="b-author">{book.author}</h4>
         <div className="details-menu">
           <ul>
             <li className="comments">
@@ -57,9 +54,11 @@ const Book = (props) => {
 
 Book.propTypes = {
   id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
+  book: PropTypes.shape({
+    category: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Book;

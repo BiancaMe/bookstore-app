@@ -11,7 +11,7 @@ const Books = () => {
     dispatch(getBooks());
   }, [dispatch]);
 
-  const { bookList } = useSelector((store) => store.book);
+  const { bookList } = useSelector((state) => state.book);
 
   return (
     <div className="books">

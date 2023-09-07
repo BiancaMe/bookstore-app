@@ -5,7 +5,8 @@ import { removeBookAPI } from '../redux/books/bookSlice';
 const Book = ({ id, book }) => {
   const dispatch = useDispatch();
 
-  const remove = () => {
+  const remove = (e) => {
+    e.preventDefault();
     dispatch(removeBookAPI(id));
   };
 

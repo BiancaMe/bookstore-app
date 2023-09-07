@@ -24,11 +24,10 @@ const AddNewBook = () => {
     setCategory(e.target.value);
   };
 
-  const submit = () => {
+  const submit = (e) => {
+    e.preventDefault();
     if (title && author && category) {
-      try {
-        dispatch(postBook({ title, author, category }));
-      } catch (err) { console.log(err); }
+      dispatch(postBook({ title, author, category }));
       document.getElementById('form').reset();
     }
   };

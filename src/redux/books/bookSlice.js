@@ -7,7 +7,7 @@ import axios from 'axios';
 const path = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/rimSwFYoqgXa4wIk8KQ2/books';
 
 const initialState = {
-  bookList: [],
+  bookList: {},
 };
 
 export const getBooks = createAsyncThunk('books/getBooks', async (thunkAPI) => {
@@ -28,7 +28,8 @@ export const postBook = createAsyncThunk('books/postBook', async (data, thunkAPI
   };
 
   try {
-    const res = await axios.post(path, book);
+    await axios.post(path, book);
+    const res = await axios.get(path);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -38,9 +39,9 @@ export const postBook = createAsyncThunk('books/postBook', async (data, thunkAPI
 
 export const removeBookAPI = createAsyncThunk('books/removeBook', async (id, thunkAPI) => {
   try {
-    const response = await axios.delete(`${path}/${id}`);
-    console.log(response.data);
-    return response.data;
+    await axios.delete(`${path}/${id}`);
+    const res = await axios.get(path);
+    return res.data;
   } catch (err) {
     console.log(err);
     return thunkAPI.rejectWithValue('something went wrong');
@@ -59,15 +60,15 @@ const bookSlice = createSlice({
         state.isLoading = false;
         state.bookList = action.payload;
       })
-      .addCase(getBooks.rejected, (state, action) => {
-        console.log(action);
+      .addCase(getBooks.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(postBook.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(postBook.fulfilled, (state) => {
+      .addCase(postBook.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.bookList = action.payload;
       })
       .addCase(postBook.rejected, (state) => {
         state.isLoading = false;
@@ -75,11 +76,11 @@ const bookSlice = createSlice({
       .addCase(removeBookAPI.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(removeBookAPI.fulfilled, (state) => {
+      .addCase(removeBookAPI.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.bookList = action.payload;
       })
-      .addCase(removeBookAPI.rejected, (state, action) => {
-        console.log(action);
+      .addCase(removeBookAPI.rejected, (state) => {
         state.isLoading = false;
       });
   },

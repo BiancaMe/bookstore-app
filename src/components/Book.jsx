@@ -1,13 +1,21 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { removeBook } from '../redux/books/bookSlice';
 
 const Book = (props) => {
   const {
-    title, cat, author, progress,
+    id, title, author, category,
   } = props;
+  const dispatch = useDispatch();
+
+  const remove = () => {
+    dispatch(removeBook(id));
+  };
+
   return (
     <div className="book">
       <div className="details">
-        <p className="b-category">{cat}</p>
+        <p className="b-category">{category}</p>
         <h3 className="b-title">{title}</h3>
         <h4 className="b-author">{author}</h4>
         <div className="details-menu">
@@ -19,7 +27,7 @@ const Book = (props) => {
               <div className="line" />
             </li>
             <li className="remove">
-              <p>Remove</p>
+              <button type="button" onClick={remove}>Remove</button>
             </li>
             <li>
               <div className="line" />
@@ -32,9 +40,7 @@ const Book = (props) => {
       </div>
       <div className="status">
         <p>
-          {progress}
-          {' '}
-          %
+          0%
         </p>
       </div>
       <div className="line" />
@@ -50,10 +56,10 @@ const Book = (props) => {
 };
 
 Book.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  cat: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
-  progress: PropTypes.string.isRequired,
 };
 
 export default Book;

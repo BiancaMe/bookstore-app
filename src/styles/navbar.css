@@ -1,18 +1,49 @@
 header {
   width: 100%;
+  margin: 0 0 2.375rem 0;
+  padding: 1.438rem 6.188rem 1.688rem 6.25rem;
+  height: 6.786rem;
+  background-color: white;
   display: flex;
   justify-content: space-between;
-  padding: 3%;
+  align-items: center;
+  position: fixed;
+  z-index: 2;
 }
 
 .nav-logo {
   display: flex;
-  width: 50%;
   justify-content: space-around;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.logo {
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #0290ff;
 }
 
 .item-c {
   display: flex;
   gap: 20px;
   list-style: none;
+}
+
+.item {
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
+  font-size: 0.813rem;
+  color: #b6b6b6;
+}
+
+.active {
+  color: #121212;
+}
+
+.user-icon {
+  width: 2rem;
+  color: #0290ff;
 }

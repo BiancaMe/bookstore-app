@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { CircularProgressbar } from 'react-circular-progressbar';
 import { removeBookAPI } from '../redux/books/bookSlice';
+import 'react-circular-progressbar/dist/styles.css';
 
 const Book = ({ id, book }) => {
   const dispatch = useDispatch();
@@ -25,7 +28,7 @@ const Book = ({ id, book }) => {
               <div className="line" />
             </li>
             <li className="remove">
-              <button type="button" onClick={remove}>Remove</button>
+              <button type="button" className="remove-btn" onClick={remove}>Remove</button>
             </li>
             <li>
               <div className="line" />
@@ -37,15 +40,16 @@ const Book = ({ id, book }) => {
         </div>
       </div>
       <div className="status">
-        <p>
-          0%
-        </p>
+        <CircularProgressbar value={75} strokeWidth={8} className="progres" />
+        <div className="percent-c">
+          <p className="percent">75%</p>
+          <p className="complete">Completed</p>
+        </div>
       </div>
-      <div className="line" />
-      <div>
-
+      <div className="vertical-line" />
+      <div className="chapter">
         <p className="c-charapter"> CURRENT CHAPTER</p>
-        <p className="b-charapter" />
+        <p className="b-charapter"> Erick </p>
         <button type="button" className="u-progress">UPDATE PROGRESS</button>
       </div>
 

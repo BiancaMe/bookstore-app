@@ -1,0 +1,46 @@
+.new-book {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+#form {
+  display: flex;
+  gap: 3.9rem;
+}
+
+.input {
+  height: 2.81em;
+  border-radius: 4px;
+  border: solid 1px #e8e8e8;
+  background-color: white;
+  font-family: " Montserrat", sans-serif;
+  font-size: 1rem;
+  letter-spacing: -0.15px;
+}
+
+.title-form {
+  width: 25.8rem;
+}
+
+.author-form {
+  width: 25.8rem;
+}
+
+.category-form {
+  width: 19.8rem;
+}
+
+.btn-add {
+  width: 11.5rem;
+  height: 2.813rem;
+  border-radius: 3px;
+  background-color: #0290ff;
+  border: none;
+  font-family: "Roboto Slab", serif;
+  color: rgb(240, 237, 237);
+  font-size: 0.813rem;
+  font-weight: 300;
+}

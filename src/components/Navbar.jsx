@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import '../styles/navbar.css';
+import User from '../icons/icon';
 
 const Navbar = () => (
   <header>
@@ -8,15 +9,15 @@ const Navbar = () => (
       <nav className="navbar">
         <ul className="item-c">
           <li>
-            <NavLink className="item" to="/">Books</NavLink>
+            <NavLink className="item" to="/">BOOKS</NavLink>
           </li>
           <li>
-            <NavLink className="item" to="/categories">Categories</NavLink>
+            <NavLink className="item" to="/categories">CATEGORIES</NavLink>
           </li>
         </ul>
       </nav>
     </div>
-    <div className="login">Log</div>
+    <User />
   </header>
 
 );

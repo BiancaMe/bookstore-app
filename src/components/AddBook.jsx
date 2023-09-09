@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { postBook } from '../redux/books/bookSlice';
+import '../styles/newBook.css';
 
 const AddNewBook = () => {
   const dispatch = useDispatch();
@@ -34,12 +35,12 @@ const AddNewBook = () => {
 
   return (
     <div>
-      <h3>Add New Book</h3>
+      <h3 className="new-book">ADD NEW BOOK</h3>
       <form id="form" onSubmit={submit}>
-        <input type="text" className="title-form" placeholder="Book title" onChange={saveTitle} />
-        <input type="text" className="author-form" placeholder="Book Author" onChange={saveAuthor} />
+        <input type="text" className="title-form input" placeholder="Book title" onChange={saveTitle} />
+        <input type="text" className="author-form input" placeholder="Book Author" onChange={saveAuthor} />
         <select
-          className="author-form"
+          className="category-form input"
           placeholder="Author"
           onChange={saveCategory}
         >
@@ -48,7 +49,7 @@ const AddNewBook = () => {
           <option>Fiction</option>
           <option>Horror</option>
         </select>
-        <button type="submit">ADD BOOK</button>
+        <button type="submit" className="btn-add">ADD BOOK</button>
       </form>
     </div>
   );
